@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import './myWidgets.dart';
-
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class dashboard extends StatefulWidget {
   @override
@@ -10,7 +12,32 @@ class dashboard extends StatefulWidget {
 class _dashboardState extends State<dashboard> {
 
   final String url = "https://uniacc-3eac9.firebaseio.com/index.json";
+  List data;
 
+  @override
+  void initState(){
+    super.initState();
+    this.getJsonData();
+  }
+
+  Future<String> getJsonData() async{
+    var response = await http.get(
+      //Encode the URL
+      Uri.encodeFull(url),
+      //Accept JSON Response
+      headers: {"Accept": "application/json"}
+    );
+
+    //Debug
+    print(response.body);
+
+    setState(() {
+      var convertDataToJson = json.decode(response.body);
+      data = convertDataToJson['results'];
+    });
+
+    return "Success!";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +85,11 @@ class _dashboardState extends State<dashboard> {
       ),
     );
 
+
+
+
     final results = new ListView(
+      shrinkWrap: true,
       children: <Widget>[
         //ID, Address, Price, Name
         boardingCard("#1001","Sidhdhartha Mawatha, Colombo 05", "Monthly Fee: LKR 8000.00","Dinendra Bandara"),
@@ -72,13 +103,12 @@ class _dashboardState extends State<dashboard> {
       body: SafeArea(
         child: Container(
           margin: EdgeInsets.only(left: 18.0, right: 18.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[welcome, mapImage, search,latest,results],
-            ),
+          child: ListView(
+            children: <Widget>[welcome, mapImage, search,latest,results],
           )
         ),
       ),
     );
   }
 }
+
