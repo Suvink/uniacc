@@ -8,6 +8,10 @@ class dashboard extends StatefulWidget {
 }
 
 class _dashboardState extends State<dashboard> {
+
+  final String url = "https://uniacc-3eac9.firebaseio.com/index.json";
+
+
   @override
   Widget build(BuildContext context) {
     //Viewport
@@ -54,7 +58,7 @@ class _dashboardState extends State<dashboard> {
       ),
     );
 
-    final results = new Column(
+    final results = new ListView(
       children: <Widget>[
         //ID, Address, Price, Name
         boardingCard("#1001","Sidhdhartha Mawatha, Colombo 05", "Monthly Fee: LKR 8000.00","Dinendra Bandara"),
@@ -68,9 +72,11 @@ class _dashboardState extends State<dashboard> {
       body: SafeArea(
         child: Container(
           margin: EdgeInsets.only(left: 18.0, right: 18.0),
-          child: ListView(
-            children: <Widget>[welcome, mapImage, search,latest,results],
-          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[welcome, mapImage, search,latest,results],
+            ),
+          )
         ),
       ),
     );

@@ -22,11 +22,8 @@ class _detailsState extends State<details> {
     _askPermission();
   }
 
-
-
   //Google Maps controller
   Completer<GoogleMapController> _controller = Completer();
-
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +137,10 @@ final detailsCard = new Container(
         //mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Utility Bills : Seperate Bills",style: TextStyle(fontWeight: FontWeight.w400,color:Colors.black),textScaleFactor: 1.2),
+          SizedBox(
+            width: double.infinity,
+            child: Text("Utility Bills : Seperate Bills",style: TextStyle(fontWeight: FontWeight.w400,color:Colors.black),textScaleFactor: 1.2),
+          ),
           SizedBox(height: 3.0,),
           Text("Key Money: 3 months",style: TextStyle(fontWeight: FontWeight.w400,color:Colors.black),textScaleFactor: 1.2),
           SizedBox(height: 3.0,),
@@ -148,8 +148,8 @@ final detailsCard = new Container(
           SizedBox(height: 3.0,),
           Text("Meals: Not Included",style: TextStyle(fontWeight: FontWeight.w400,color:Colors.black),textScaleFactor: 1.2)
         ],
-      )
-
+      ),
+      Container(color: Color(0xFFA2A0A0), height: 2, margin: EdgeInsets.only(top: 10, bottom: 10.0), width: 0.9*vw,),
     ],
   ),
 );

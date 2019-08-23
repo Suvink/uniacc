@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'TTCommons',
         primarySwatch: Colors.blue,
       ),
-      home: details(),
+      home: dashboard(),
     );
   }
 }
