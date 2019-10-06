@@ -10,23 +10,21 @@ class dashboard extends StatefulWidget {
 }
 
 class _dashboardState extends State<dashboard> {
-
   final String url = "https://uniacc-3eac9.firebaseio.com/index.json";
   List data;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     this.getJsonData();
   }
 
-  Future<String> getJsonData() async{
+  Future<String> getJsonData() async {
     var response = await http.get(
-      //Encode the URL
-      Uri.encodeFull(url),
-      //Accept JSON Response
-      headers: {"Accept": "application/json"}
-    );
+        //Encode the URL
+        Uri.encodeFull(url),
+        //Accept JSON Response
+        headers: {"Accept": "application/json"});
 
     //Debug
     print(response.body);
@@ -62,7 +60,6 @@ class _dashboardState extends State<dashboard> {
       ),
     );
 
-
     final search = Container(
         child: TextField(
       decoration: InputDecoration(
@@ -76,6 +73,14 @@ class _dashboardState extends State<dashboard> {
       ),
     ));
 
+//    final test = new ListView.builder(
+//      itemBuilder: (BuildContext context, int index) {
+//        var dataObj  = data[index]
+//        return boardingCard(dataObj.);
+//      },
+//      itemCount: data.length,
+//    );
+
     final latest = Container(
       margin: EdgeInsets.only(top: 20.0),
       child: Text(
@@ -85,30 +90,27 @@ class _dashboardState extends State<dashboard> {
       ),
     );
 
-
-
-
     final results = new ListView(
       shrinkWrap: true,
       children: <Widget>[
         //ID, Address, Price, Name
-        boardingCard("#1001","Sidhdhartha Mawatha, Colombo 05", "Monthly Fee: LKR 8000.00","Dinendra Bandara"),
-        boardingCard("#1002","Reid Avenue, Colombo 07", "Monthly Fee: LKR 6000.00","Manul Madara"),
-        boardingCard("#1003","Pannipitiya, Kottawa", "Monthly Fee: LKR 5000.00","Chenuka Madawela"),
+        boardingCard("#1001", "Sidhdhartha Mawatha, Colombo 05",
+            "Monthly Fee: LKR 8000.00", "Dinendra Bandara"),
+        boardingCard("#1002", "Reid Avenue, Colombo 07",
+            "Monthly Fee: LKR 6000.00", "Manul Madara"),
+        boardingCard("#1003", "Pannipitiya, Kottawa",
+            "Monthly Fee: LKR 5000.00", "Chenuka Madawela"),
       ],
     );
-
 
     return new Scaffold(
       body: SafeArea(
         child: Container(
-          margin: EdgeInsets.only(left: 18.0, right: 18.0),
-          child: ListView(
-            children: <Widget>[welcome, mapImage, search,latest,results],
-          )
-        ),
+            margin: EdgeInsets.only(left: 18.0, right: 18.0),
+            child: ListView(
+              children: <Widget>[welcome, mapImage, search, latest, results],
+            )),
       ),
     );
   }
 }
-

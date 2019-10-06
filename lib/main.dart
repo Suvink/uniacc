@@ -2,10 +2,24 @@ import 'package:flutter/material.dart';
 import 'dashboard.dart';
 import 'details.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(Uniacc());
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
+class Uniacc extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return UniaccState();
+  }
+}
+
+class UniaccState extends State<Uniacc> {
+  int _selectedPage = 0;
+  final _pageOptions = [
+    dashboard(),
+    dashboard(),
+    details()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +28,32 @@ class MyApp extends StatelessWidget {
         fontFamily: 'TTCommons',
         primarySwatch: Colors.blue,
       ),
-      home: dashboard(),
+      home: Scaffold(
+        body: _pageOptions[_selectedPage],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedPage,
+          onTap: (int index) {
+            setState(() {
+              _selectedPage = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text("Dashboard"),
+              backgroundColor: Color(0xFFE93B55)
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.dashboard),
+                title: Text("My Places")
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.supervised_user_circle),
+                title: Text("Profile")
+            )
+          ],
+        ),
+      ),
     );
   }
 }
