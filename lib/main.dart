@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:uniacc/myPlaces.dart';
 import 'dashboard.dart';
 import 'details.dart';
+import 'profile.dart';
+import 'myPlaces.dart';
 
 void main() => runApp(Uniacc());
 
@@ -16,8 +19,8 @@ class UniaccState extends State<Uniacc> {
   int _selectedPage = 0;
   final _pageOptions = [
     dashboard(),
-    dashboard(),
-    details()
+    myPlaces(),
+    profile()
   ];
 
   @override

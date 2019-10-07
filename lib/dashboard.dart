@@ -30,8 +30,8 @@ class _dashboardState extends State<dashboard> {
     print(response.body);
 
     setState(() {
-      var convertDataToJson = json.decode(response.body);
-      data = convertDataToJson['results'];
+      var convertDataToJson = json.decode(response.body.toString());
+      data = convertDataToJson['results'.toString()];
     });
 
     return "Success!";
