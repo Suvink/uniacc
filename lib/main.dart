@@ -4,6 +4,7 @@ import 'dashboard.dart';
 import 'details.dart';
 import 'profile.dart';
 import 'myPlaces.dart';
+import 'newDash.dart';
 
 void main() => runApp(Uniacc());
 
@@ -18,7 +19,7 @@ class Uniacc extends StatefulWidget{
 class UniaccState extends State<Uniacc> {
   int _selectedPage = 0;
   final _pageOptions = [
-    dashboard(),
+    newDashboard(),
     myPlaces(),
     profile()
   ];
@@ -44,7 +45,7 @@ class UniaccState extends State<Uniacc> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               title: Text("Dashboard"),
-              backgroundColor: Color(0xFFE93B55)
+              backgroundColor: Color(0xFFE93B55),
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.dashboard),
@@ -55,6 +56,7 @@ class UniaccState extends State<Uniacc> {
                 title: Text("Profile")
             )
           ],
+          selectedItemColor: Color(0xFFE93B55),
         ),
       ),
     );
