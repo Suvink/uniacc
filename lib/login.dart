@@ -114,13 +114,24 @@ class _loginState extends State<login> {
         ),
     ));
 
+    final signupBtn = Container(
+        margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+        child: RaisedButton(
+          color: Color(0xFFF6BF5B),
+          child: const Text(
+              'SignUp',
+              style: TextStyle(fontWeight: FontWeight.w900,color: Colors.white)
+          ),
+        ));
+
 
     final returnWrapper = new ListView(
       children: <Widget>[
         mapImage,
         title,
         loginBlock,
-        loginBtn
+        loginBtn,
+        signupBtn
       ],
     );
 
