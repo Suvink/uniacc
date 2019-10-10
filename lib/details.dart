@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import './myWidgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'myPlaces.dart';
 
 class details extends StatefulWidget {
   final String address;
@@ -65,11 +66,15 @@ class _detailsState extends State<details> {
     final vh = MediaQuery.of(context).size.height;
     final vw = MediaQuery.of(context).size.width;
 
-    final title = Center(
+
+    final title =  GestureDetector(
+      onTap: (){
+        Navigator.pop(context,false);
+      },
       child: Container(
         margin: EdgeInsets.only(top: 20.0),
         child: Text(
-          "Details",
+          "< Back",
           style: TextStyle(fontWeight: FontWeight.w900),
           textScaleFactor: 1.0,
         ),
@@ -93,7 +98,8 @@ class _detailsState extends State<details> {
           Marker(
               markerId: MarkerId('BoardingPlace'),
               position: LatLng(6.063945, 80.207602),
-              infoWindow: InfoWindow(title: "Boarding Place #"+ '${widget.id}'),
+              infoWindow:
+                  InfoWindow(title: "Boarding Place #" + '${widget.id}'),
               icon: BitmapDescriptor.defaultMarkerWithHue(
                   BitmapDescriptor.hueRed))
         },
@@ -140,7 +146,7 @@ class _detailsState extends State<details> {
                     color: Color(0xFFE93B55),
                     size: 30.0,
                   ),
-                  onPressed: () => launch('sms:'+ '${widget.phone}')),
+                  onPressed: () => launch('sms:' + '${widget.phone}')),
               SizedBox(width: 10),
               IconButton(
                 icon: Icon(
@@ -148,7 +154,7 @@ class _detailsState extends State<details> {
                   color: Color(0xFFE93B55),
                   size: 30.0,
                 ),
-                onPressed: () => launch('tel:'+ '${widget.phone}'),
+                onPressed: () => launch('tel:' + '${widget.phone}'),
               )
             ],
           ),
@@ -169,7 +175,7 @@ class _detailsState extends State<details> {
                 '${widget.address}',
                 style:
                     TextStyle(fontWeight: FontWeight.w400, color: Colors.black),
-                textScaleFactor: 0.9,
+                textScaleFactor: 1.2,
               ),
             ],
           ),
@@ -249,7 +255,7 @@ class _detailsState extends State<details> {
             children: <Widget>[
               SizedBox(
                 width: double.infinity,
-                child: Text("Utility Bills : "+ '${widget.utility}',
+                child: Text("Utility Bills : " + '${widget.utility}',
                     style: TextStyle(
                         fontWeight: FontWeight.w400, color: Colors.black),
                     textScaleFactor: 1.2),
@@ -257,21 +263,21 @@ class _detailsState extends State<details> {
               SizedBox(
                 height: 3.0,
               ),
-              Text("Key Money: "+ '${widget.keymoney}',
+              Text("Key Money: " + '${widget.keymoney}',
                   style: TextStyle(
                       fontWeight: FontWeight.w400, color: Colors.black),
                   textScaleFactor: 1.2),
               SizedBox(
                 height: 3.0,
               ),
-              Text("Payment Method: "+ '${widget.payment}',
+              Text("Payment Method: " + '${widget.payment}',
                   style: TextStyle(
                       fontWeight: FontWeight.w400, color: Colors.black),
                   textScaleFactor: 1.2),
               SizedBox(
                 height: 3.0,
               ),
-              Text("Meals: "+ '${widget.meals}',
+              Text("Meals: " + '${widget.meals}',
                   style: TextStyle(
                       fontWeight: FontWeight.w400, color: Colors.black),
                   textScaleFactor: 1.2)
@@ -283,6 +289,14 @@ class _detailsState extends State<details> {
             margin: EdgeInsets.only(top: 10, bottom: 10.0),
             width: 0.9 * vw,
           ),
+//          Container(
+//            child: RaisedButton(
+//              child: Text("BOOK NOW",
+//                  style: TextStyle(
+//                      fontWeight: FontWeight.w400, color: Colors.black),
+//                  textScaleFactor: 1.2),
+//            ),
+//          )
         ],
       ),
     );
@@ -295,7 +309,7 @@ class _detailsState extends State<details> {
             Positioned(
               child: title,
               top: 20.0,
-              left: 0,
+              left: 10.0,
               right: 0,
             ),
             Positioned(
@@ -304,7 +318,18 @@ class _detailsState extends State<details> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.touch_app),
+        backgroundColor: Color(0xFFE93B55),
+        onPressed: (){
+          Navigator.push(
+            context,
+            new MaterialPageRoute(builder: (context) => new myPlaces()),
+          );
+        },
+      ) ,
     );
+
   }
 
   //User Permission for Google Maps location

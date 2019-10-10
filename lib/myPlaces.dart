@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:timeline/model/timeline_model.dart';
 import 'package:timeline/timeline.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class myPlaces extends StatefulWidget {
+
+//  final String token;
+//  const myPlaces(this.token);
+
   @override
   State<StatefulWidget> createState() => new _myPlacesState();
 }
@@ -19,9 +24,25 @@ class _myPlacesState extends State<myPlaces> {
     final vh = MediaQuery.of(context).size.height;
     final vw = MediaQuery.of(context).size.width;
 
+
+    final backBtn =  GestureDetector(
+      onTap: (){
+        Navigator.pop(context,false);
+      },
+      child: Container(
+        alignment: Alignment.topLeft,
+        margin: EdgeInsets.only(top: 5.0,left: 10.0),
+        child: Text(
+          "< Back",
+          style: TextStyle(fontWeight: FontWeight.w900),
+          textScaleFactor: 1.0,
+        ),
+      ),
+    );
+
     final title = Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.only(bottom: 0.02 * vh, top: 20.0),
+      margin: EdgeInsets.only(bottom: 0.017 * vh, top: 5.0),
       child: Text(
         "My Places",
         style: TextStyle(fontWeight: FontWeight.w900),
@@ -131,20 +152,33 @@ class _myPlacesState extends State<myPlaces> {
       shrinkWrap: true,
       padding: EdgeInsets.only(left: 10.0, right: 10.0),
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            Text(
-              "Monthly Fee for November",
-              style:
+        Container(
+          padding: EdgeInsets.only(left: 20.0),
+          decoration: BoxDecoration(
+            color: Color(0xFFF6BF5B),
+            borderRadius: BorderRadius.all(Radius.circular(10.0))
+          ),
+          child: GestureDetector(
+            onTap: (){
+              launch("https://play.google.com/store/apps/details?id=lk.dialog.genie");
+            },
+            child: Row(
+              children: <Widget>[
+                Text(
+                  "Monthly Fee for November",
+                  style:
                   TextStyle(fontWeight: FontWeight.w300, color: Colors.black),
-              textScaleFactor: 1.0,
+                  textScaleFactor: 1.0,
+                ),
+                SizedBox(width: 20.0,),
+                Image(
+                  image: AssetImage("assets/genie.png"),
+                  width: 50.0,
+                  height: 50.0,
+                )
+              ],
             ),
-            Image(
-              image: AssetImage("assets/genie.png"),
-              width: 50.0,
-              height: 50.0,
-            )
-          ],
+          ),
         )
       ],
     );
@@ -152,6 +186,7 @@ class _myPlacesState extends State<myPlaces> {
     final returnWrapper = new Column(
       //shrinkWrap: true,
       children: <Widget>[
+        backBtn,
         title,
         placeCard,
         actTitle,

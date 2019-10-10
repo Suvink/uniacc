@@ -4,6 +4,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'details.dart';
+import 'package:loading/loading.dart';
+import 'package:loading/indicator/line_scale_pulse_out_indicator.dart';
 
 class newDashboard extends StatefulWidget {
   @override
@@ -17,7 +19,7 @@ class _newDashboardState extends State<newDashboard> {
   }
 
   Future<List<placesData>> _getJson() async {
-    var data = await http.get("https://uniacc-3eac9.firebaseio.com/index.json");
+    var data = await http.get("http://35.247.185.195/api/api.json");
     var jsonData = json.decode(data.body);
 
     List<placesData> places = [];
@@ -111,14 +113,18 @@ class _newDashboardState extends State<newDashboard> {
           if (snapshot.data == null) {
             return Container(
               margin: EdgeInsets.only(top: 40.0),
-              child: Center(
-                child: Text(
-                  "Loading...",
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                  textScaleFactor: 1.4,
+              child: Container(
+                foregroundDecoration: new BoxDecoration(
+                  //color: Color(0xFFE93B55)
                 ),
-              ),
-            );
+                //color: Color(0xFFE93B55),
+                child: Center(
+                  child: Loading(
+                      indicator: LineScalePulseOutIndicator(),
+                      size: 50.0
+                  ),
+                ),
+              ));
           } else {
             return ListView.builder(
                 shrinkWrap: true,
