@@ -4,8 +4,6 @@ import 'package:uniacc/newDash.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'home.dart';
 
-
-
 class login extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _loginState();
@@ -61,78 +59,71 @@ class _loginState extends State<login> {
         children: <Widget>[
           Container(
               child: TextField(
-                controller: usernameController,
-                decoration: InputDecoration(
-                  //focusedBorder: Bor,
-                  hintText: 'Username',
-                  suffixIcon: IconButton(
-                      icon: Icon(Icons.supervised_user_circle),
-                      onPressed: () {
-                        debugPrint('Username');
-                      }),
-                ),
-              )),
+            controller: usernameController,
+            decoration: InputDecoration(
+              //focusedBorder: Bor,
+              hintText: 'Username',
+              suffixIcon: IconButton(
+                  icon: Icon(Icons.supervised_user_circle),
+                  onPressed: () {
+                    debugPrint('Username');
+                  }),
+            ),
+          )),
           Container(
               child: TextField(
-                obscureText: true,
-                controller:passwordController,
-                decoration: InputDecoration(
-                  //focusedBorder: Bor,
-                  hintText: 'Password',
-                  suffixIcon: IconButton(
-                      icon: Icon(Icons.keyboard_hide),
-                      onPressed: () {
-                        debugPrint('Password');
-                      }),
-                ),
-              ))
+            obscureText: true,
+            controller: passwordController,
+            decoration: InputDecoration(
+              //focusedBorder: Bor,
+              hintText: 'Password',
+              suffixIcon: IconButton(
+                  icon: Icon(Icons.keyboard_hide),
+                  onPressed: () {
+                    debugPrint('Password');
+                  }),
+            ),
+          ))
         ],
       ),
     );
 
     final loginBtn = Container(
         margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-      child: RaisedButton(
-        color: Color(0xFFE93B55),
-        onPressed: () {
-          print(usernameController.text);
-          print(passwordController.text);
-          var username = usernameController.toString();
-          var password = passwordController.toString();
-          if(username == "dilhani" && password == "dee"){
-            Navigator.push(context, new MaterialPageRoute(builder: (context) => newDashboard()));
-            print("done");
+        child: RaisedButton(
+          color: Color(0xFFE93B55),
+          onPressed: () {
+            print(usernameController.text);
+            print(passwordController.text);
+            var username = usernameController.toString();
+            var password = passwordController.toString();
+            if (username == "dilhani" && password == "dee") {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => newDashboard()));
+              print("done");
 //          }else if(usernameController.toString() == "dilhani" && passwordController.toString() == "dee"){
 //            Navigator.push(context, new MaterialPageRoute(builder: (context) => home()));
-          }else {
-            Navigator.push(context, new MaterialPageRoute(builder: (context) => home()));
-          }
-        },
-        child: const Text(
-            'Login',
-            style: TextStyle(fontWeight: FontWeight.w900,color: Colors.white)
-        ),
-    ));
+            } else {
+              Navigator.push(
+                  context, new MaterialPageRoute(builder: (context) => home()));
+            }
+          },
+          child: const Text('Login',
+              style:
+                  TextStyle(fontWeight: FontWeight.w900, color: Colors.white)),
+        ));
 
     final signupBtn = Container(
         margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
         child: RaisedButton(
           color: Color(0xFFF6BF5B),
-          child: const Text(
-              'SignUp',
-              style: TextStyle(fontWeight: FontWeight.w900,color: Colors.white)
-          ),
+          child: const Text('SignUp',
+              style:
+                  TextStyle(fontWeight: FontWeight.w900, color: Colors.white)),
         ));
 
-
     final returnWrapper = new ListView(
-      children: <Widget>[
-        mapImage,
-        title,
-        loginBlock,
-        loginBtn,
-        signupBtn
-      ],
+      children: <Widget>[mapImage, title, loginBlock, loginBtn, signupBtn],
     );
 
     return Scaffold(
@@ -142,3 +133,4 @@ class _loginState extends State<login> {
     );
   }
 }
+

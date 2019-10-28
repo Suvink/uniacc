@@ -131,11 +131,41 @@ class _detailsState extends State<details> {
                 size: 50.0,
               ),
               SizedBox(width: 5.0),
-              Text(
-                '${widget.name}',
-                style:
+              Column(
+                children: <Widget>[
+                  Text(
+                    '${widget.name}',
+                    style:
                     TextStyle(fontWeight: FontWeight.w900, color: Colors.black),
-                textScaleFactor: 1.2,
+                    textScaleFactor: 1.2,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.star, color: Colors.amber, size: 15.0,
+                      ),
+                      Icon(
+                        Icons.star, color: Colors.amber, size: 15.0,
+                      ),
+                      Icon(
+                        Icons.star, color: Colors.amber, size: 15.0,
+                      ),
+                      Icon(
+                        Icons.star, color: Colors.amber, size: 15.0,
+                      ),
+                      Icon(
+                        Icons.star, color: Colors.amber, size: 15.0,
+                      ),
+                      SizedBox(width: 5.0,),
+                      Text(
+                        '1 review',
+                        style:
+                        TextStyle(fontWeight: FontWeight.w900, color: Colors.black),
+                        textScaleFactor: 0.8,
+                      )
+                    ],
+                  )
+                ],
               ),
               SizedBox(
                 width: 0.10 * vw,
@@ -231,6 +261,29 @@ class _detailsState extends State<details> {
                 children: <Widget>[
                   Text(
                     "People",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400, color: Color(0xFFA2A0A0)),
+                    textScaleFactor: 1.0,
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Text(
+                    '${widget.maxpeople}',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400, color: Colors.black),
+                    textScaleFactor: 1.5,
+                  ),
+                ],
+              ),
+
+              SizedBox(
+                width: 20.0,
+              ),
+              Column(
+                children: <Widget>[
+                  Text(
+                    "Reviews",
                     style: TextStyle(
                         fontWeight: FontWeight.w400, color: Color(0xFFA2A0A0)),
                     textScaleFactor: 1.0,

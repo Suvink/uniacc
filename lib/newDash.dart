@@ -21,27 +21,30 @@ class _newDashboardState extends State<newDashboard> {
   Future<List<placesData>> _getJson() async {
     var data = await http.get("http://35.247.185.195/api/api.json");
     var jsonData = json.decode(data.body);
+    //debugPrint(jsonData);
 
     List<placesData> places = [];
 
     for (var i in jsonData) {
       placesData place = placesData(
-        i["address"],
-        i["beds"],
-        i["id"],
-        i["keymoney"],
-        i["latlng"],
-        i["map"],
-        i["maxpeople"],
-        i["meals"],
-        i["name"],
-        i["payment"],
-        i["phone"],
-        i["price"],
-        i["rooms"],
-        i["tag"],
-        i["utility"],
-      );
+          i["address"],
+          i["beds"],
+          i["id"],
+          i["keymoney"],
+          i["latlng"],
+          i["map"],
+          i["maxpeople"],
+          i["meals"],
+          i["name"],
+          i["payment"],
+          i["phone"],
+          i["price"],
+          i["rooms"],
+          i["tag"],
+          i["utility"],
+          i["rating"],
+          i["no_of_reviews"],
+          i["reviews"]);
       places.add(place);
     }
     print(places.length);
@@ -111,20 +114,19 @@ class _newDashboardState extends State<newDashboard> {
         future: _getJson(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
+
             return Container(
-              margin: EdgeInsets.only(top: 40.0),
-              child: Container(
-                foregroundDecoration: new BoxDecoration(
-                  //color: Color(0xFFE93B55)
-                ),
-                //color: Color(0xFFE93B55),
-                child: Center(
-                  child: Loading(
-                      indicator: LineScalePulseOutIndicator(),
-                      size: 50.0
+                margin: EdgeInsets.only(top: 40.0),
+                child: Container(
+                  foregroundDecoration: new BoxDecoration(
+                      //color: Color(0xFFE93B55)
+                      ),
+                  //color: Color(0xFFE93B55),
+                  child: Center(
+                    child: Loading(
+                        indicator: LineScalePulseOutIndicator(), size: 50.0),
                   ),
-                ),
-              ));
+                ));
           } else {
             return ListView.builder(
                 shrinkWrap: true,
@@ -158,6 +160,7 @@ class _newDashboardState extends State<newDashboard> {
                       snapshot.data[index]._address,
                       "Monthly Fee: LKR" + snapshot.data[index]._price,
                       snapshot.data[index]._name,
+                      snapshot.data[index]._rating
                     ),
                   );
                 });
@@ -198,6 +201,9 @@ class placesData {
   final String _rooms;
   final String _tag;
   final String _utility;
+  final String _rating;
+  final String _noOfReviews;
+  final String _reviewList;
 
   placesData(
       this._address,
@@ -214,5 +220,8 @@ class placesData {
       this._price,
       this._rooms,
       this._tag,
-      this._utility);
+      this._utility,
+      this._rating,
+      this._noOfReviews,
+      this._reviewList);
 }
