@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'details.dart';
 import 'package:loading/loading.dart';
 import 'package:loading/indicator/line_scale_pulse_out_indicator.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:flutter_range_slider/flutter_range_slider.dart' as frs;
 
 class newDashboard extends StatefulWidget {
   @override
@@ -13,6 +15,11 @@ class newDashboard extends StatefulWidget {
 }
 
 class _newDashboardState extends State<newDashboard> {
+  double _lowerValue = 20.0;
+  double _upperValue = 80.0;
+  double _lowerValueFormatter = 20.0;
+  double _upperValueFormatter = 20.0;
+
   @override
   void initState() {
     super.initState();
@@ -52,6 +59,14 @@ class _newDashboardState extends State<newDashboard> {
     return places;
   }
 
+  //CheckBoxes
+  bool _isChecked = false;
+  void onChanged(bool value) {
+    setState(() {
+      _isChecked = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     //Viewport
@@ -75,18 +90,176 @@ class _newDashboardState extends State<newDashboard> {
       ),
     );
 
-    final search = Container(
-        child: TextField(
-      decoration: InputDecoration(
-        //focusedBorder: Bor,
-        hintText: 'Search for an area',
-        suffixIcon: IconButton(
-            icon: Icon(Icons.search),
+    final search = Row(
+      children: <Widget>[
+        Container(
+            width: 0.766 * vw,
+            child: TextField(
+              decoration: InputDecoration(
+                //focusedBorder: Bor,
+                hintText: 'Search for an area',
+                suffixIcon: IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      debugPrint('222');
+                    }),
+              ),
+            )),
+        IconButton(
+            icon: Icon(Icons.tune),
+            color: Colors.grey,
             onPressed: () {
-              debugPrint('222');
-            }),
-      ),
-    ));
+              Alert(
+                  context: context,
+                  title: "Filters",
+                  content: Column(
+                    children: <Widget>[
+                      SizedBox(height: 20.0),
+                      Text(
+                        "Price Range",
+                        style: TextStyle(color: Color(0xFFE93B55)),
+                        textScaleFactor: 0.7,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            "3000",
+                            textScaleFactor: 0.5,
+                          ),
+                          frs.RangeSlider(
+                            min: 0.0,
+                            max: 100.0,
+                            lowerValue: _lowerValue,
+                            upperValue: _upperValue,
+                            divisions: 5,
+                            showValueIndicator: true,
+                            valueIndicatorMaxDecimals: 1,
+                            onChanged:
+                                (double newLowerValue, double newUpperValue) {
+                              setState(() {
+                                _lowerValue = newLowerValue;
+                                _upperValue = newUpperValue;
+                              });
+                            },
+                            onChangeStart: (double startLowerValue,
+                                double startUpperValue) {
+                              print(
+                                  'Started with values: $startLowerValue and $startUpperValue');
+                            },
+                            onChangeEnd:
+                                (double newLowerValue, double newUpperValue) {
+                              print(
+                                  'Ended with values: $newLowerValue and $newUpperValue');
+                            },
+                          ),
+                          Text("100000", textScaleFactor: 0.5),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        "Rating",
+                        style: TextStyle(color: Color(0xFFE93B55)),
+                        textScaleFactor: 0.7,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                "1",
+                                textScaleFactor: 0.7,
+                              ),
+                              Icon(Icons.star, color: Colors.amber, size: 15.0),
+                            ],
+                          ),
+                          frs.RangeSlider(
+                            min: 0.0,
+                            max: 100.0,
+                            lowerValue: _lowerValue,
+                            upperValue: _upperValue,
+                            divisions: 5,
+                            showValueIndicator: true,
+                            valueIndicatorMaxDecimals: 1,
+                            onChanged:
+                                (double newLowerValue, double newUpperValue) {
+                              setState(() {
+                                _lowerValue = newLowerValue;
+                                _upperValue = newUpperValue;
+                              });
+                            },
+                            onChangeStart: (double startLowerValue,
+                                double startUpperValue) {
+                              print(
+                                  'Started with values: $startLowerValue and $startUpperValue');
+                            },
+                            onChangeEnd:
+                                (double newLowerValue, double newUpperValue) {
+                              print(
+                                  'Ended with values: $newLowerValue and $newUpperValue');
+                            },
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                "5",
+                                textScaleFactor: 0.7,
+                              ),
+                              Icon(Icons.star, color: Colors.amber, size: 15.0),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        "Room Preference",
+                        style: TextStyle(color: Color(0xFFE93B55)),
+                        textScaleFactor: 0.7,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Checkbox(
+                            value: _isChecked,
+                            onChanged: (bool value) {
+                              onChanged(value);
+                            },
+                          ),
+                          Text(
+                            "Shared Room",
+                            textScaleFactor: 0.6,
+                          ),
+                          Checkbox(
+                            value: true,
+                            onChanged: (bool value) {
+                              onChanged(value);
+                            },
+                          ),
+                          Text(
+                            "Full Room",
+                            textScaleFactor: 0.6,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  buttons: [
+                    DialogButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(
+                        "Apply",
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                      width: 100.0,
+                      color: Color(0xFFE93B55),
+                    )
+                  ]).show();
+            })
+      ],
+    );
 
     final latest = Container(
       margin: EdgeInsets.only(top: 20.0),
@@ -97,24 +270,10 @@ class _newDashboardState extends State<newDashboard> {
       ),
     );
 
-//    final results = new ListView(
-//      shrinkWrap: true,
-//      children: <Widget>[
-//        //ID, Address, Price, Name
-//        boardingCard("#1001", "Sidhdhartha Mawatha, Colombo 05",
-//            "Monthly Fee: LKR 8000.00", "Dinendra Bandara"),
-//        boardingCard("#1002", "Reid Avenue, Colombo 07",
-//            "Monthly Fee: LKR 6000.00", "Manul Madara"),
-//        boardingCard("#1003", "Pannipitiya, Kottawa",
-//            "Monthly Fee: LKR 5000.00", "Chenuka Madawela"),
-//      ],
-//    );
-
     final jsonResults = new FutureBuilder(
         future: _getJson(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
-
             return Container(
                 margin: EdgeInsets.only(top: 40.0),
                 child: Container(
@@ -129,6 +288,7 @@ class _newDashboardState extends State<newDashboard> {
                 ));
           } else {
             return ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -153,15 +313,16 @@ class _newDashboardState extends State<newDashboard> {
                                     rooms: snapshot.data[index]._rooms,
                                     tag: snapshot.data[index]._tag,
                                     utility: snapshot.data[index]._utility,
+                                    noOfReviews:
+                                        snapshot.data[index]._noOfReviews,
                                   )));
                     },
                     child: boardingCard(
-                      "#" + snapshot.data[index]._id,
-                      snapshot.data[index]._address,
-                      "Monthly Fee: LKR" + snapshot.data[index]._price,
-                      snapshot.data[index]._name,
-                      snapshot.data[index]._rating
-                    ),
+                        "#" + snapshot.data[index]._id,
+                        snapshot.data[index]._address,
+                        "Monthly Fee: LKR" + snapshot.data[index]._price,
+                        snapshot.data[index]._name,
+                        snapshot.data[index]._rating),
                   );
                 });
           }

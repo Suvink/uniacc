@@ -72,11 +72,28 @@ class _profileState extends State<profile> {
       )
     );
 
+    final userRating = Container(
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("4.7",
+              style: TextStyle(fontWeight: FontWeight.w500),
+              textScaleFactor: 0.9,
+            ),
+            SizedBox(width: 5.0),
+            Icon(Icons.star, color: Colors.amber,size: 15.0),
+          ],
+        ),
+      ),
+    );
+
     final userInfo = new Container(
       margin: EdgeInsets.only(top: 20.0),
       alignment: Alignment.center,
       child: Column(
         children: <Widget>[
+          userRating,
           Text(
             "Hirusha Chamod",
             style: TextStyle(fontWeight: FontWeight.w500),
@@ -117,7 +134,7 @@ class _profileState extends State<profile> {
     );
 
     final returnWrapper = new ListView(
-      children: <Widget>[title, userImage, userInfo,cardTitle,card],
+      children: <Widget>[title, userImage,userInfo,cardTitle,card],
     );
 
     return Scaffold(

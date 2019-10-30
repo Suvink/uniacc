@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:uniacc/details.dart';
-import 'dart:async';
-import 'package:url_launcher/url_launcher.dart';
 
 //Boarding Cards
 class boardingCard extends StatelessWidget {
@@ -88,10 +83,70 @@ class boardingCard extends StatelessWidget {
   }
 }
 
-//      onTap: () {
-//        debugPrint(id);
-//        Navigator.push(
-//          context,
-//          new MaterialPageRoute(builder: (context) => new details()),
-//        );
-//      },
+
+
+
+//Boarding Cards
+class reviewCard extends StatelessWidget {
+  final String name;
+  final String review;
+  final String rating;
+
+  const reviewCard(this.name, this.review, this.rating);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+      child: Column(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(15.0),
+                  topLeft: Radius.circular(15.0)),
+              color: Color(0xFFE93B55),
+            ),
+            height: 30.0,
+            padding: EdgeInsets.all(5.0),
+            child: Row(
+              children: <Widget>[
+                Icon(
+                  Icons.account_circle,
+                  color: Colors.white,
+                  size: 20.0,
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(name,
+                    style: TextStyle(color: Colors.white), textScaleFactor: 0.9)
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top:10.0),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.star, color: Colors.amber,size: 20.0),
+                  Icon(Icons.star,color: Colors.amber, size: 20.0),
+                  Icon(Icons.star,color: Colors.amber, size: 20.0),
+                  Icon(Icons.star_border,color: Colors.amber, size: 20.0),
+                  Icon(Icons.star_border,color: Colors.amber, size: 20.0),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top:10.0),
+            child: Text(
+                review,
+                style: TextStyle()),
+          )
+        ],
+      ),
+    );
+  }
+}

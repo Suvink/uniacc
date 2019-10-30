@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
-import './myWidgets.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'myPlaces.dart';
+import 'review.dart';
+import 'street.dart';
 
 class details extends StatefulWidget {
   final String address;
@@ -22,6 +24,7 @@ class details extends StatefulWidget {
   final String rooms;
   final String tag;
   final String utility;
+  final String noOfReviews;
 
   const details(
       {this.address,
@@ -38,7 +41,8 @@ class details extends StatefulWidget {
       this.price,
       this.rooms,
       this.tag,
-      this.utility});
+      this.utility,
+      this.noOfReviews});
 
   @override
   State<StatefulWidget> createState() => new _detailsState();
@@ -58,6 +62,10 @@ class _detailsState extends State<details> {
 
   //Google Maps controller
   Completer<GoogleMapController> _controller = Completer();
+
+  //StreetView controller
+  final Completer<WebViewController> _webController = Completer<WebViewController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -168,23 +176,35 @@ class _detailsState extends State<details> {
                 ],
               ),
               SizedBox(
-                width: 0.10 * vw,
+                width: 0.01 * vw,
               ),
               IconButton(
                   icon: Icon(
                     Icons.sms,
                     color: Color(0xFFE93B55),
-                    size: 30.0,
+                    size: 25.0,
                   ),
                   onPressed: () => launch('sms:' + '${widget.phone}')),
-              SizedBox(width: 10),
+              //SizedBox(width: 5),
               IconButton(
                 icon: Icon(
                   Icons.call,
                   color: Color(0xFFE93B55),
-                  size: 30.0,
+                  size: 25.0,
                 ),
                 onPressed: () => launch('tel:' + '${widget.phone}'),
+              ),
+              //SizedBox(width: 5),
+              IconButton(
+                icon: Icon(
+                  Icons.local_library,
+                  color: Color(0xFFE93B55),
+                  size: 25.0,
+                ),
+                onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => street()));
+                },
               )
             ],
           ),
@@ -280,24 +300,29 @@ class _detailsState extends State<details> {
               SizedBox(
                 width: 20.0,
               ),
-              Column(
-                children: <Widget>[
-                  Text(
-                    "Reviews",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400, color: Color(0xFFA2A0A0)),
-                    textScaleFactor: 1.0,
-                  ),
-                  SizedBox(
-                    height: 5.0,
-                  ),
-                  Text(
-                    '${widget.maxpeople}',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400, color: Colors.black),
-                    textScaleFactor: 1.5,
-                  ),
-                ],
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, new MaterialPageRoute(builder: (context) => review()));
+                },
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Reviews",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400, color: Color(0xFFA2A0A0)),
+                      textScaleFactor: 1.0,
+                    ),
+                    SizedBox(
+                      height: 5.0,
+                    ),
+                    Text(
+                      '${widget.noOfReviews}',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400, color: Colors.black),
+                      textScaleFactor: 1.5,
+                    ),
+                  ],
+                ),
               )
             ],
           ),
