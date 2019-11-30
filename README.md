@@ -58,7 +58,7 @@ This is our promotional video for UniAcc :[![Watch our video](Logos/video.png)](
 
 ## Disclaimer
 
-UniAcc is a product designed and developed by Team G5X.
+UniAcc is a product designed and developed by Team SemiColon;
 
 Team Members:
 <ul>
@@ -70,4 +70,4 @@ Team Members:
 
 MIT License.
 Please Refer LICENCE file for more info.
-Copyright (c) 2019 G5X.
+Copyright (c) 2019 SemiColon;
