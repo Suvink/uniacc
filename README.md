@@ -71,3 +71,22 @@ Team Members:
 MIT License.
 Please Refer LICENCE file for more info.
 Copyright (c) 2019 SemiColon;
+
+## Table
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky">UniAcc</th>
+    <th class="tg-0pky">Team SemiColon;</th>
+    <th class="tg-0pky">If you are from an area far away from where the university that you are applying to , you are going to need an place to accommodate. UniAcc is a mobile platform to find such boarding places just with few clicks.</th>
+    <th class="tg-0pky">MIT</th>
+    <th class="tg-0pky">Sri Lanka</th>
+    <th class="tg-0pky">Suvin Nimnaka &lt;br&gt; Dilhani Gamhatha &lt;br&gt;<br>Hirusha Chamod</th>
+  </tr>
+</table>
