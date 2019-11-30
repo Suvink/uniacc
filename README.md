@@ -67,6 +67,6 @@ Team Members:
 
 ## License
 
-MIT License
+MIT License.
 Please Refer LICENCE file for more info.
 Copyright (c) 2019 G5X.
