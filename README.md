@@ -37,7 +37,8 @@ If more than one device is connected, use the flutter devices command to get the
  
 ## Promotional Video
 
-This is our promotional video for UniAcc :[![Watch our video](https://github.com/Suvink/uniacc/blob/master/Logos/Feature%20Graphic.jpg?raw=true)](https://youtu.be/BNAQH9Cvb4w)
+This is our promotional video for UniAcc :
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BNAQH9Cvb4w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
   
 
