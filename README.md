@@ -76,11 +76,11 @@ Copyright (c) 2019 SemiColon;
 
 <table class="tg">
   <tr>
-	  <th class="tg-0pky"><a href="https://github.com/Suvink/uniacc">UniAcc</a></th>
-    <th class="tg-0pky">Team SemiColon;</th>
+	  <th class="tg-0pky"><a href="https://github.com/Suvink/uniacc">UniAcc by SemiColon;</a></th>
+    <th class="tg-0pky"><a href="https://github.com/Suvink/uniacc">UniAcc</a></th>
     <th class="tg-0pky">If you are from an area far away from where the university that you are applying to , you are going to need an place to accommodate. UniAcc is a mobile platform to find such boarding places just with few clicks.</th>
     <th class="tg-0pky">MIT</th>
     <th class="tg-0pky">Sri Lanka</th>
-    <th class="tg-0pky">Suvin Nimnaka <br> Dilhani Gamhatha <br>Hirusha Chamod</th>
+	  <th class="tg-0pky"><a href="https://github.com/suvink">Suvin Nimnaka</a> <br> <a href="https://github.com/Dil-G">Dilhani Gamhatha</a> <br><a href="https://github.com/hiru997">Hirusha Chamod</a></th>
   </tr>
 </table>
